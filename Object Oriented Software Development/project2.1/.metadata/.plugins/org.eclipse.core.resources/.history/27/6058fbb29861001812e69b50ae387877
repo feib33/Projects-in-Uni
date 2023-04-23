@@ -1,0 +1,30 @@
+package mycontroller;
+
+import java.util.List;
+
+public class MoveOnLava {
+	
+	private List<?> LavaTiles;//store all lava tiles
+	
+	
+	public MoveOnLava() {
+		// TODO Auto-generated constructor stub
+	}
+	/**get current view of car, store every lava tiles it saw,
+	 * then do a traversal until certain condition.
+	 * @param delta
+	 */
+	public void update(int delta) {
+		
+	}
+	
+	/**traverse all lava tiles around the car
+	 * 
+	 * @return path
+	 */
+	public List<?> lavaTileTraversal(){
+		return null;
+		
+	}
+
+}

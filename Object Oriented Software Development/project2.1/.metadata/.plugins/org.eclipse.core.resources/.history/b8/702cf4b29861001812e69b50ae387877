@@ -1,0 +1,32 @@
+package mycontroller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import tiles.LavaTrap;
+import world.Car;
+
+public class MoveToKey {
+
+	public MoveToKey() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public void update(Car car,int delta,ArrayList<Integer> keyposX,ArrayList<Integer> keyposY) {
+		int carXPos=Math.round(car.getX());
+		int carYPos=Math.round(car.getY());
+		Tiles carpos=new Tiles(carXPos,carYPos);
+		int j=keyposX.size();
+		for (int i=0;i<j;i++) {
+			//retrieve position of key
+			Tiles key=new Tiles(keyposX.get(i),keyposY.get(i));
+			AstarSearch analyser=new AstarSearch();
+			List<?> bestPath=analyser.findPath((AStarNode)carpos, (AStarNode)key);
+			
+			//move the car base on path found
+		}
+		
+		
+	}
+}

@@ -1,0 +1,25 @@
+package mycontroller;
+
+import world.World;
+
+
+public class Originator {
+	
+	public World editorContents;
+	
+	public void setState(World contents) {
+		this.editorContents = contents;
+	}
+	
+	public Memento save() {
+		return new Memento(editorContents);
+	}
+	
+	/**
+	 * back to last delta time of world state
+	 * @param memento
+	 */
+	public void restoreToState(Memento memento) {
+		editorContents = memento.getSavedState();
+	}
+}

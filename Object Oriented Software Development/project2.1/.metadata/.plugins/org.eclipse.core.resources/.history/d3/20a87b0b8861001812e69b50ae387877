@@ -1,0 +1,6 @@
+package mycontroller;
+
+public abstract class Move {
+	public void move() {
+	}
+}

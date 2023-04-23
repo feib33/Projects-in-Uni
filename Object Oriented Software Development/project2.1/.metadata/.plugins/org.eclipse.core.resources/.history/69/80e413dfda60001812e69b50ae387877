@@ -1,0 +1,58 @@
+package mycontroller;
+
+
+import java.util.HashMap;
+
+import controller.CarController;
+import tiles.MapTile;
+import tiles.TrapTile;
+import utilities.Coordinate;
+import world.Car;
+
+
+public class MyAIController extends CarController{
+	private Car car;
+	private static boolean isTurningLeft = false;
+	private static boolean isTurningRight = false; 
+	private boolean isFollowingWall = false;
+	public MyAIController(Car car) {
+		super(car);
+		this.car = car;
+	}
+
+	@Override
+	public void update(float delta) {
+		
+		MoveOnNormal normalMove = new MoveOnNormal();
+		if(!isFollowingWall) {
+			isFollowingWall = normalMove.findWall(car, delta, isTurningLeft, isTurningRight);
+		}else {
+			normalMove.move(car, delta, isTurningLeft, isTurningRight);
+		}
+	
+		String carPos = car.getPosition();
+		String[] carPosArr = carPos.split(",");
+		int carX = Integer.parseInt(carPosArr[0]);
+		int carY = Integer.parseInt(carPosArr[1]);
+		Coordinate carCoordinate = new Coordinate(carX, carY);
+		System.out.print(carCoordinate);
+		HashMap<Coordinate, MapTile> currentView = getView();
+		TrapTile healthTile = (TrapTile)(currentView.get(carCoordinate));
+		System.out.println(healthTile.getTrap());
+		if(healthTile.getTrap() == "health") {
+			System.out.printf("I am in health");
+		}
+		
+		
+		
+	}
+	
+	public static void setIsTurningLeft(boolean bool) {
+		isTurningLeft = bool;
+	}
+	
+	public static void setIsTurningRight(boolean bool) {
+		isTurningRight = bool;
+	}
+
+}

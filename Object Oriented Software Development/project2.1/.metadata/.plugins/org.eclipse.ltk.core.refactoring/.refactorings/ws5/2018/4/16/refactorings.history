@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;ws5.Account.status&apos; in &apos;ws5.Account&apos;&#x0D;&#x0A;- Original project: &apos;ws5&apos;&#x0D;&#x0A;- Original element: &apos;ws5.Account.status&apos;&#x0D;&#x0A;- Getter method name: &apos;getStatus&apos;&#x0D;&#x0A;- Setter method name: &apos;setStatus&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;status&apos;" flags="589830" getter="getStatus" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;ws5{Account.java[Account^status" insertion="2" setter="setStatus" stamp="1523852830009" version="1.0" visibility="1"/>
+</session>

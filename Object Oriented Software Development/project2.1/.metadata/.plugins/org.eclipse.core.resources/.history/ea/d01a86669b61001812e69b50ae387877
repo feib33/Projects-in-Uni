@@ -1,0 +1,46 @@
+package mycontroller;
+
+import java.util.List;
+
+import utilities.Coordinate;
+import world.Car;
+
+public class MoveOnLava extends Move{
+	
+	private List<Tiles> LavaTiles;//store all lava tiles
+	
+	
+	public MoveOnLava() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	/**get current view of car, store every lava tiles it saw,
+	 * then do a traversal until certain condition and if saw
+	 * any keys then call findKey() to save it
+	 * @param delta
+	 */
+	public void move(Car car, int delta) {
+		
+	}
+	
+	/**traverse all lava tiles around the car
+	 * 
+	 * @return path
+	 */
+	public List<Tiles> lavaTileTraversal(){
+		return null;
+		
+	}
+	/**
+	 * when car can see any keys in its sight,
+	 * save  coordinate of keys and return to
+	 * controller
+	 * @param car
+	 * @return a list of all coordinate of keys
+	 */
+	public List<Coordinate> findKey(Car car, List<Coordinate> keysPos) {
+		return null;
+	}
+
+}

@@ -1,0 +1,37 @@
+package mycontroller;
+
+import java.util.List;
+
+import world.World;
+
+public class Tiles extends AStarNode{
+
+	public Tiles(float posX,float posY) {
+		this.posX=posX;
+		this.posY=posY;
+		// TODO Auto-generated constructor stub
+	}
+	
+
+	@Override
+	public float getEstimatedCost(AStarNode node) {
+		// TODO Auto-generated method stub
+		return Math.abs(node.posX-this.posX)+Math.abs(node.posY-this.posY);
+	}
+	
+	@Override
+	public List<Tiles> getNeighbors() {
+		
+		
+		return null;
+	}
+
+	@Override
+	public float getCost(AStarNode node) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+
+}

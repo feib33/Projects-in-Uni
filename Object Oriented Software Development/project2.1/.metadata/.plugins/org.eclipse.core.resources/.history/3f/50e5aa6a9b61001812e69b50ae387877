@@ -1,0 +1,18 @@
+package mycontroller;
+
+import world.World;
+
+//Originator
+public class Originator {
+	//state
+	public World editorContents;
+	public void setState(World contents) {
+		this.editorContents = contents;
+	}
+	public Memento save() {
+		return new Memento(editorContents);
+	}
+	public void restoreToState(Memento memento) {
+		editorContents = memento.getSavedState();
+	}
+}

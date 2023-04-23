@@ -1,0 +1,96 @@
+package mycontroller;
+
+
+import java.util.HashMap;
+
+import controller.CarController;
+import tiles.MapTile;
+import tiles.MapTile.Type;
+import tiles.TrapTile;
+import utilities.Coordinate;
+import world.Car;
+import world.WorldSpatial;
+
+
+public class MyAIController extends CarController{
+	private Car car;
+	private static WorldSpatial.RelativeDirection lastTurnDirection = null; // Shows the last turn direction the car takes.
+	private static WorldSpatial.Direction previousState = null; // Keeps track of the previous state
+	private static boolean isTurningLeft = false;
+	private static boolean isTurningRight = false; 
+	private boolean isFollowingWall = false;
+	public MyAIController(Car car) {
+		super(car);
+		this.car = car;
+	}
+
+	@Override
+	public void update(float delta) {
+		checkStateChange();
+		
+		MoveOnNormal normalMove = new MoveOnNormal();
+		if(!isFollowingWall) {
+			isFollowingWall = normalMove.findWall(car, delta, isTurningLeft, isTurningRight, previousState);
+		}else {
+			normalMove.move(car, delta, isTurningLeft, isTurningRight, lastTurnDirection, previousState);
+			
+		}
+		
+		
+		
+		Coordinate carCoordinate = new Coordinate(getPosition());
+		
+		HashMap<Coordinate, MapTile> currentView = getView();
+		MapTile healthTile = (currentView.get(carCoordinate));
+		if(healthTile.isType(Type.TRAP)) {
+			TrapTile healthTrap = (TrapTile)healthTile;
+			if (healthTrap.getTrap() == "health" && getHealth() < 100) {
+				MoveOnHealth healthyMove = new MoveOnHealth();
+				healthyMove.move(car, delta);
+			}
+		}
+		
+		
+		
+		
+	}
+	
+	
+	
+	/**
+	 * Checks whether the car's state has changed or not, stops turning if it
+	 *  already has.
+	 */
+	private void checkStateChange() {
+		if(previousState == null){
+			previousState = car.getOrientation();
+		}
+		else{
+			if(previousState != getOrientation()){
+				if(isTurningLeft){
+					isTurningLeft = false;
+				}
+				if(isTurningRight){
+					isTurningRight = false;
+				}
+				previousState = car.getOrientation();
+			}
+		}
+	}
+	
+	public static void setIsTurningLeft(boolean bool) {
+		isTurningLeft = bool;
+	}
+	
+	public static void setIsTurningRight(boolean bool) {
+		isTurningRight = bool;
+	}
+	
+	public static void setLastTurnDirection(WorldSpatial.RelativeDirection lastTurnDir) {
+		lastTurnDirection = lastTurnDir;
+	}
+	
+	public static void setPreviousState(WorldSpatial.Direction preState) {
+		previousState = preState;
+	}
+}

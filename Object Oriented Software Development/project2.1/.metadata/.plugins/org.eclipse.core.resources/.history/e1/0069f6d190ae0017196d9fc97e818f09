@@ -1,0 +1,14 @@
+package project2;
+
+public class Tnt extends Sprite{
+	public Tnt(float x, float y) {
+		super("res/tnt.png", x, y);
+	}
+	
+	public static void onMove(float x, float y, float delta_x, float delta_y) {
+		System.out.println(getNameOfSprite(x+2*delta_x, y+2*delta_y));
+		if(Sprite.getNameOfSprite(x + 2*delta_x, y + 2*delta_y) == "package2.Cracked") {
+			System.out.println("u get it!");		
+		}
+	}
+}

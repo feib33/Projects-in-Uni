@@ -1,0 +1,21 @@
+package mycontroller;
+
+
+import controller.CarController;
+import world.Car;
+
+
+public class MyAIController extends CarController{
+	private Car car;
+	public MyAIController(Car car) {
+		super(car);
+		this.car = car;
+	}
+
+	@Override
+	public void update(float delta) {
+		MoveOnNormal normalMove = new MoveOnNormal();
+		normalMove.move(car, delta);
+	}
+
+}

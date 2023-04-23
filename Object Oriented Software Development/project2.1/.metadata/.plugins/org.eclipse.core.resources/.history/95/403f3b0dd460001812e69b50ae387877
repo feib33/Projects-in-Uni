@@ -1,0 +1,26 @@
+package mycontroller;
+
+
+import controller.CarController;
+import world.Car;
+
+
+public class MyAIController extends CarController{
+	private Car car;
+	private boolean isFollowingWall = false;
+	public MyAIController(Car car) {
+		super(car);
+		this.car = car;
+	}
+
+	@Override
+	public void update(float delta) {
+		MoveOnNormal normalMove = new MoveOnNormal();
+		if(!isFollowingWall) {
+			isFollowingWall = normalMove.findWall(car, delta);
+		}else {
+			normalMove.move(car, delta);
+		}
+	}
+
+}

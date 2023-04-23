@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="org.newdawn.slick.Input"/>
+<fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.awt.Image"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="controller.AIController"/>
+<fullyQualifiedTypeName name="utilities.PeekTuple"/>
+<fullyQualifiedTypeName name="world.WorldSpatial.RelativeDirection"/>
+<fullyQualifiedTypeName name="tiles.LavaTrap"/>
+<fullyQualifiedTypeName name="tiles.TrapTile"/>
+<fullyQualifiedTypeName name="tiles.MapTile.Type"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="world.Car"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="utilities.Coordinate"/>
+<fullyQualifiedTypeName name="java.util.Stack"/>
+</qualifiedTypeNameHistroy>

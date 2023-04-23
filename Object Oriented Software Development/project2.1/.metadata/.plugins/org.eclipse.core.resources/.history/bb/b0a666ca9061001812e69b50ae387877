@@ -1,0 +1,21 @@
+package mycontroller;
+
+import world.Car;
+
+
+public class MoveOnHealth extends Move{
+	private int wallSensitivity = 2;
+	
+	public MoveOnHealth() {
+		
+	}
+	
+	public void move(Car car, float delta) {
+		if(car.getSpeed() > 0) {
+			car.applyReverseAcceleration();
+		}
+		
+		System.out.printf("I was braking!!!");
+	}
+	
+}

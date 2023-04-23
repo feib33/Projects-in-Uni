@@ -1,0 +1,8 @@
+package ws5;
+
+public class Driver {
+	public static void main(String args[]) {
+		Account acc = new Account(null, null);
+		System.out.println(acc.getStatus());
+	}
+}

@@ -1,0 +1,79 @@
+package project2;
+
+import java.util.ArrayList;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
+
+public class World {
+	private static ArrayList<Sprite> sprites;
+	private int level = 0;
+	public World() {
+		sprites = Loader.loadSprites("res/levels/" + level + ".lvl");
+		
+	}
+	
+	
+	public void update(Input input, int delta) {
+		for (Sprite sprite : sprites) {
+			if (sprite != null) {
+				sprite.update(input, delta);
+				undoRedo(input, delta);
+				nextLevel();
+			}
+		}
+	}
+	
+	public void render(Graphics g) {
+		int moves = 0;
+		for (Sprite sprite : sprites) {
+			if (sprite != null) {
+				sprite.render(g);
+				
+			}
+		}
+		moves = Sprite.getMoves();
+		g.drawString("Moves: " + moves, 0, 0);
+		System.out.println("the num of moves is " + moves);
+	}
+	
+	
+	
+	public void undoRedo(Input input, int delta) {
+		if (input.isKeyPressed(Input.KEY_Z) && !HistoryStack.empty()) {
+			sprites = HistoryStack.pop();
+		}  else if (input.isKeyPressed(Input.KEY_R)) {
+			sprites = HistoryStack.restart();
+		} 
+	}
+	
+	public static void addIntoStack() {
+		try {
+			HistoryStack.push(sprites);
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static ArrayList<Sprite> getList() {
+		return sprites;
+	} 
+	
+	// when all targets are activated, then load the next level
+	public void nextLevel () {
+		int numTarget = 0, numActivated = 0;
+		for(Sprite sprite : sprites) {
+			if(sprite instanceof Target) {
+				numTarget++;
+				if(Target.isActivated(sprites, sprite)) {
+					numActivated++;
+				}
+			}
+		}
+		
+		if(numActivated == numTarget) {
+			level++;
+			sprites = Loader.loadSprites("res/levels/" + level + ".lvl");
+		}
+	}
+}

@@ -1,0 +1,23 @@
+package mycontroller;
+
+import world.Car;
+
+
+public class MoveOnHealth extends Move{
+	
+	public MoveOnHealth() {
+		
+	}
+	/**
+	 * when car moves on the healthTrap, it would
+	 * not move until its health is full
+	 * @param car
+	 * @param delta
+	 */
+	public void move(Car car, float delta) {
+		if(car.getSpeed() > 0) {
+			car.applyReverseAcceleration();
+		}
+	}
+	
+}

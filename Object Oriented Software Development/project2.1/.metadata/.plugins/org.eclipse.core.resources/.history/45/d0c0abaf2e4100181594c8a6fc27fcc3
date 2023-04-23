@@ -1,0 +1,32 @@
+package ws5;
+
+public class Account {
+	private Bill bill;
+	private String status;
+
+	public Account(String status, Bill bill){
+		status = "pending";
+		this.bill = bill;
+	}
+	
+	public void signUpProduct(boolean isApproved) {
+		if(isApproved) {
+			setStatus("active");
+		}
+	}
+	
+	public void makeComplaint() {
+		
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
+	
+}

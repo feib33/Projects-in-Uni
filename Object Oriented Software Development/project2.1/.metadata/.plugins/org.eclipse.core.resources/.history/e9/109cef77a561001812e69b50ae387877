@@ -1,0 +1,8 @@
+package mycontroller;
+
+import world.Car;
+
+public abstract class Move {
+	public void move(float delta) {
+	}
+}

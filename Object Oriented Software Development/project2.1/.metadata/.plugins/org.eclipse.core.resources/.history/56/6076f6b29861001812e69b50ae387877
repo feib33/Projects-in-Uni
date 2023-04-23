@@ -1,0 +1,16 @@
+package mycontroller;
+
+import world.World;
+
+public class Memento {
+
+	private final World WorldState;
+	
+	public Memento(World state) {
+	    WorldState = state;
+	  }
+	public World getSavedState() {
+	    return WorldState;
+	  }
+
+}

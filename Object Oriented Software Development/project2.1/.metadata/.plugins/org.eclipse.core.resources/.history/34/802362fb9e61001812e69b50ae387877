@@ -1,0 +1,23 @@
+package mycontroller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import tiles.LavaTrap;
+import world.Car;
+
+public class MoveToKey {
+
+	public MoveToKey() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	// use A* algorithm to move to key's position one by one in order
+	public void update(Car car,int delta,ArrayList<Integer> keyposX,ArrayList<Integer> keyposY) {
+		int carXPos=Math.round(car.getX());
+		int carYPos=Math.round(car.getY());
+		
+		
+		
+	}
+}

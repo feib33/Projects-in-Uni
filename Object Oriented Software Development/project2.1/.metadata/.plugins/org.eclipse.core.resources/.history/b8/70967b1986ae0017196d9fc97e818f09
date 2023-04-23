@@ -1,0 +1,142 @@
+package project2;
+
+import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Graphics;
+
+public class Sprite implements Cloneable{
+	// Used to decide what direction an object is moving
+	// Look up enums to find a more elegant solution!
+	public static final int DIR_NONE = 0;
+	public static final int DIR_LEFT = 1;
+	public static final int DIR_RIGHT = 2;
+	public static final int DIR_UP = 3;
+	public static final int DIR_DOWN = 4;
+	
+	private Image image = null;
+	private float x;
+	private float y;
+	private int moves;
+	
+	public Sprite(String image_src, float x, float y) {
+		try {
+			image = new Image(image_src);
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+		
+		this.x = x;
+		this.y = y;
+		//snapToGrid();
+	}
+	
+	public void update(Input input, int delta) {
+		
+	}
+	
+
+	
+	
+	public void render(Graphics g) {
+		image.drawCentered(x, y);
+	}
+	
+	// Forces this sprite to align to the grid
+	public void snapToGrid() {
+		x /= App.TILE_SIZE;
+		y /= App.TILE_SIZE;
+		x = Math.round(x);
+		y = Math.round(y);
+		x *= App.TILE_SIZE;
+		y *= App.TILE_SIZE;
+	}
+	
+	public void moveToDest(int dir) {
+		float speed = 32;
+		// Translate the direction to an x and y displacement
+		float delta_x = 0,
+			  delta_y = 0;
+		switch (dir) {
+			case DIR_LEFT:
+				delta_x = -speed;
+				break;
+			case DIR_RIGHT:
+				delta_x = speed;
+				break;
+			case DIR_UP:
+				delta_y = -speed;
+				break;
+			case DIR_DOWN:
+				delta_y = speed;
+				break;
+		}
+		
+		// Make sure the position isn't occupied!
+		if(Player.isPushable(x + delta_x, y + delta_y)) {
+			
+			if(!Player.isPushable(x + 2*delta_x, y + 2*delta_y) 
+					&& !Loader.isBlocked(x + 2*delta_x, y + 2*delta_y)) {
+				moves++;
+				x += delta_x;
+				y += delta_y;
+				Player.onMove(x, y, x + delta_x, y + delta_y);
+				
+			} else if(getNameOfSprite(x + delta_x, y + delta_y) == "project2.Tnt") {
+				Tnt.onMove(x, y, delta_x, delta_y);
+			}
+		}else if(!Loader.isBlocked(x + delta_x, y + delta_y)){
+			// if player moved, then moves increase
+			if((int)delta_x == 0 && (int)delta_y == 0) {
+				//Player did not move at this moment.
+			} else {
+				moves++;
+				
+			}
+			x += delta_x;
+			y += delta_y; 
+			
+		}
+	}
+	
+	public static String getNameOfSprite(float x, float y) {
+		for(Sprite sprite : World.getList()) {
+			if(sprite.getX() == x
+					&& sprite.getY() == y
+					&& sprite.getClass().getName() != "project2.Floor") {
+				return sprite.getClass().getName();
+			}
+		}
+		return null;
+	} 
+	
+	public Object clone() throws CloneNotSupportedException{  
+		return super.clone();  
+	}
+
+	
+	public float getX() {
+		return x;
+	}
+	
+	public void setX(float x) {
+		this.x = x;
+	}
+	
+	public float getY() {
+		return y;
+	}
+	
+	public void setY(float y) {
+		this.y = y;
+	}
+
+	public int getMoves() {
+		return moves;
+	}
+	
+	public void setMoves(int moves) {
+		this.moves = moves;
+	}
+
+}

@@ -1,0 +1,13 @@
+package mycontroller;
+
+import world.Car;
+
+public class MoveOnHealth extends Move{
+	public MoveOnHealth() {
+		
+	}
+	
+	public void move(Car car, float delta) {
+		
+	}
+}

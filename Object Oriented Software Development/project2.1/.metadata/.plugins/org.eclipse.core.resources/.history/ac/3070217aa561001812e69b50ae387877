@@ -1,0 +1,21 @@
+package mycontroller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import tiles.LavaTrap;
+import utilities.Coordinate;
+import world.Car;
+
+public class MoveToKey extends Move{
+
+	public MoveToKey() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	// use A* algorithm to move to key's position one by one in order
+	public void move(Car car,float delta, List<Coordinate> keysPos) {
+		
+		
+	}
+}

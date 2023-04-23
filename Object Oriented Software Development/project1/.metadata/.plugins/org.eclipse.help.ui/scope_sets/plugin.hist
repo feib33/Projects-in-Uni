@@ -1,0 +1,4 @@
+#Sun Sep 17 15:38:59 CST 2017
+__DEFAULT__=false
+org.eclipse.help.ui.localSearch.master=true
+expression=plugin
